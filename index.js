@@ -53,31 +53,12 @@ return inquirer.prompt([
     },
 ])
 }
-const stubs={
-    title: 'nick',
-    description: 'great coding',
-    install: 'no',
-    usage: 'extensively',
-    contribution: 'be nice',
-    license: 'mit',
-    github: 'nick',
-    email: 'nick@nick.nick'
-  }
-//   const data={
-//     title: '',
-//     description: '',
-//     install: '',
-//     usage: '',
-//     contribution: '",
-//     license: '',
-//     github: '',
-//     email: 'nick@nick.nick'
-//   }
+
 
 //TODO: generate markdown
 
 function generateMarkdown(data) {
-
+   console.log(data)
     // //for (let key of data){
     //     console.log(key, " is ",data[key])
     // }
@@ -101,7 +82,7 @@ III. [Questions] (#Questions)
 //TODO: wrtie to file
 
 function writeToFile(data) {
-    fs.writeFile("./README.md", generateMarkdown(data), function (err){
+    fs.writeFile("./README.md",data, function (err){
         if (err) throw err;
         console.log("YES");
     })};
@@ -115,8 +96,7 @@ function init(){
     userPrompt().then(answers=>{
         console.log(answers)
         const formattedString= generateMarkdown(answers)
-        writeToFile(answers.title,answers.description,answers.install,answers.usage,answers.contribution,answers.license,answers.github,answers.email,
-            formattedString)
+        writeToFile(formattedString)
     })
 }
 init()
