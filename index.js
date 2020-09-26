@@ -63,17 +63,35 @@ const stubs={
     github: 'nick',
     email: 'nick@nick.nick'
   }
+//   const data={
+//     title: '',
+//     description: '',
+//     install: '',
+//     usage: '',
+//     contribution: '",
+//     license: '',
+//     github: '',
+//     email: 'nick@nick.nick'
+//   }
 
 //TODO: generate markdown
 
 function generateMarkdown(data) {
 
-    for (key in data){
-        console.log(key, " is ",data[key])
-    }
+    // //for (let key of data){
+    //     console.log(key, " is ",data[key])
+    // }
 
     return `# ${data.title}
 ### Description: ${data.description}
+## Table of Contetents
+I. [Usage] (#Usage)
+II. [Contribution] (#Contribution)
+III. [Questions] (#Questions)
+## Usage: ${data.usage}
+## Install: ${data.install}
+##Contribution: ${data.contribution}
+## Questions: Please contact me should you have additional questions. I can be reached via [GitHub](https://github.com/${data.username}) and or by email ${data.email}
 
   `;
   }
@@ -82,18 +100,23 @@ function generateMarkdown(data) {
 
 //TODO: wrtie to file
 
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName,
-         data,
+function writeToFile(data) {
+    fs.writeFile("./README.md", generateMarkdown(data), function (err){
+        if (err) throw err;
+        console.log("YES");
+    })};
+
+         
           //{encoding: "utf-8"},
-          ()=>{console.log("you tried to wrtie a file")})
-}
+          //()=>{console.log("you tried to wrtie a file")})
+
 //writeToFile("nick2", "this is a story about nick")
 function init(){
     userPrompt().then(answers=>{
         console.log(answers)
         const formattedString= generateMarkdown(answers)
-        writeToFile(answers.title, formattedString)
+        writeToFile(answers.title,answers.description,answers.install,answers.usage,answers.contribution,answers.license,answers.github,answers.email,
+            formattedString)
     })
 }
 init()
