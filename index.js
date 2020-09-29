@@ -1,7 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-
 //function for user input//
 
 function userPrompt(){
@@ -44,13 +43,22 @@ return inquirer.prompt([
     {
     type: "input",
     message: "please enter github username",
-    name: "github"
+    name: "user"
     },
     {
     type: "input",
     message: "please enter email address",
     name: "email",
     },
+    {
+    type: "input",
+    message: "Input test instructions",
+    name: "tests",
+        },
+        {type: "input",
+        message: "Please enter reposity name",
+        name: "name",
+        },
 ])
 }
 
@@ -66,18 +74,16 @@ function generateMarkdown(data) {
     return `# ${data.title}
 ### Description: ${data.description}
 ## Table of Contetents
-I. [Usage] (#Usage)
-II. [Contribution] (#Contribution)
-III. [Questions] (#Questions)
 ## Usage: ${data.usage}
 ## Install: ${data.install}
-##Contribution: ${data.contribution}
-## Questions: Please contact me should you have additional questions. I can be reached via [GitHub](https://github.com/${data.username}) and or by email ${data.email}
+## Contribution: ${data.contribution}
+## Tests: ${data.tests}
+## Questions: Please contact me should you have additional questions. I can be reached via [GitHub](https://github.com/${data.user}) and or by email ${data.email}
 
   `;
   }
   
-  //console.log(generateMarkdown(stubs))
+
 
 //TODO: wrtie to file
 
@@ -91,7 +97,6 @@ function writeToFile(data) {
           //{encoding: "utf-8"},
           //()=>{console.log("you tried to wrtie a file")})
 
-//writeToFile("nick2", "this is a story about nick")
 function init(){
     userPrompt().then(answers=>{
         console.log(answers)

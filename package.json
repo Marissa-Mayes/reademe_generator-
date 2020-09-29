@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Marissa-Mayes/reademe_generator-#readme",
   "dependencies": {
-    "inquirer": "^7.3.3"
+    "inquirer": "^7.3.3",
+    "readme-md-generator": "^1.0.0"
   }
 }
